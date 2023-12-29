@@ -2,6 +2,9 @@ package de.nata.futures;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Service for creation of CompletableFuture objects
+ */
 public class CompletableFuturePredictionService {
 
     private final PredictionGenerator generator;
@@ -10,14 +13,21 @@ public class CompletableFuturePredictionService {
         generator = new PredictionGenerator();
     }
 
+    /**
+     * Generate of random index
+     * @return CompletableFuture with integer value
+     */
     public CompletableFuture<Integer> generateIndex() {
         return CompletableFuture.supplyAsync(generator::getRandomIndex);
     }
 
+    /**
+     * Generate an integer after some timeout
+     * @return
+     */
     public CompletableFuture<Integer> generateIndexWithTimeout() {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                System.out.println("In generate index:" + Thread.currentThread().getName());
                 Thread.sleep(2000);
                 return generator.getRandomIndex();
             } catch (InterruptedException e) {
@@ -27,23 +37,27 @@ public class CompletableFuturePredictionService {
         });
     }
 
+    /**
+     * Returns a prediction by index in the array
+     * @param number
+     * @return
+     */
     public CompletableFuture<String> getPredictionToIndex(int number) {
         return CompletableFuture.supplyAsync(() -> generator.getPredictionByIndex(number));
     }
 
-    public CompletableFuture<String> compose(String param) {
-
-        return CompletableFuture.supplyAsync(() -> {
-            String output = param + " + ";
-            String prediction = generator.generateRandomPrediction();
-            return output + prediction;
-        });
-    }
-
+    /**
+     * Creates random prediction
+     * @return prediction text
+     */
     public CompletableFuture<String> createRandomPrediction() {
         return CompletableFuture.supplyAsync(generator::generateRandomPrediction);
     }
 
+    /**
+     * Simulates an error by calling creation of random prediction
+     * @return
+     */
     public CompletableFuture<String> createRandomPredictionWithError() {
         return CompletableFuture.supplyAsync(generator::generatePredictionWithError);
     }

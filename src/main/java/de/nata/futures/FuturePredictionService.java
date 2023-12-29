@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * Service for creation a Future object with prediction text
+ * Service for creation Future objects with prediction text
  */
 public class FuturePredictionService {
 

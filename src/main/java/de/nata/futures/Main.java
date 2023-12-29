@@ -12,7 +12,7 @@ public class Main {
     private static final CompletableFuturePredictionService COMPLETABLE_FUTURE_PREDICTION_SERVICE = new CompletableFuturePredictionService();
 
     public static void main(String[] args) throws InterruptedException {
-        whenComplete();
+        applyToEither();
     }
 
     // ******** Methods with Future ***********
@@ -118,7 +118,7 @@ public class Main {
      * Example of applyToEither()
      */
     public static void applyToEither() {
-        CompletableFuture<Integer> indexFuture = COMPLETABLE_FUTURE_PREDICTION_SERVICE.generateIndex();
+        CompletableFuture<Integer> indexFuture = COMPLETABLE_FUTURE_PREDICTION_SERVICE.generateIndexWithTimeout();
         COMPLETABLE_FUTURE_PREDICTION_SERVICE.generateIndex()
                 .applyToEither(indexFuture, text -> text)
                 .thenAccept(System.out::println)
