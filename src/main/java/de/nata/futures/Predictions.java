@@ -1,5 +1,8 @@
-package org.example;
+package de.nata.futures;
 
+/**
+ * Simple class for holding and providing the list of predictions
+ */
 public class Predictions {
 
     private final String[] predictions = {
