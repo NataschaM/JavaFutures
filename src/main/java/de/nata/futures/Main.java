@@ -12,7 +12,7 @@ public class Main {
     private static final CompletableFuturePredictionService COMPLETABLE_FUTURE_PREDICTION_SERVICE = new CompletableFuturePredictionService();
 
     public static void main(String[] args) throws InterruptedException {
-        applyToEither();
+        createPredictionWithFuture();
     }
 
     // ******** Methods with Future ***********
@@ -21,7 +21,7 @@ public class Main {
      * Method for demonstration of execution and handling of Future objects.
      * A random prediction has to be delivered as Future and the content has to be printed
      */
-    public static void createPredictionWithFuture() {
+    public static void createPredictionWithFuture() throws InterruptedException {
 
         FuturePredictionService futurePredictionService = new FuturePredictionService();
         Future<String> futureResult = futurePredictionService.createRandomPrediction();
